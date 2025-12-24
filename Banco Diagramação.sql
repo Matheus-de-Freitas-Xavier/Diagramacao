@@ -20,8 +20,3 @@ data_dia VARCHAR(50),
 id_mensal INT,
 FOREIGN KEY (id_mensal) REFERENCES tbl_pagamento_mensal(id_paga_mes)
 );
-
-use diagramar;
-SELECT * FROM tbl_paginas;
-SELECT * FROM tbl_pagamento_diario;
-SELECT * FROM tbl_pagamento_mensal;

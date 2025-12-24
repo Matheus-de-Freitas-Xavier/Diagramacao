@@ -5,8 +5,8 @@ from datetime import datetime
 conexao = mysql.connector.connect(
     host="localhost",
     user="root",
-    password="1234",
-    database="diagramar"
+    password="sua_senha",
+    database="seu_banco"
 )
 
 cursor = conexao.cursor()
@@ -35,12 +35,16 @@ print(f"A soma total é: {soma_total}")
 # --- 4. CALCULAR O PAGAMENTO DIARIO ---
 dia_reg = datetime.now().strftime("%Y-%m-%d")
 
+
 if soma_total >= 15000 and soma_total <= 16500:
     pagamento_diario = soma_total * 0.12
 else:
     pagamento_diario = soma_total * 0.10
 
-# --- 7. SALVAR NO BANCO ---
+# 0.12 e 0.10 são os centavos que ganhava por quantidade de fotos
+# que fazia por mês
+
+# --- 5. SALVAR NO BANCO ---
 
 sql_diaria = "INSERT INTO tbl_pagamento_diario (data_dia, valor_dia) VALUES (%s, %s)"
 cursor.execute(sql_diaria, (dia_reg, pagamento_diario))
@@ -56,6 +60,6 @@ conexao.commit()
 
 print("\nResultado salvo no banco de dados com sucesso!")
 
-# --- 8. FECHAR CONEXÃO ---
+# --- 6. FECHAR CONEXÃO ---
 cursor.close()
 conexao.close() 
